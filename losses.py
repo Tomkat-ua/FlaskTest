@@ -20,10 +20,8 @@ def losses_list():
         limit =''
     sql = (' SELECT SDOC_ID,SDOC_NUM,SDOC_DATE,SERIAL,TOV_NAME,UNIT_NAME,action_date '
            ' FROM monitoring.get_losses ') + where + ' order by 1 desc  '+ limit
-    print(sql)
     losses =db.get_data(sql,[offset + 1, offset + per_page])
     # total_records = len(losses)
-    print(total_records)
     return render_template('losses.html',losses = losses ,title = 'Втрати майна',
                            page=page,total_pages=total_pages,total_records=total_records[0],serch_result=serial,records = len(losses))
 
