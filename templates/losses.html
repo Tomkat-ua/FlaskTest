@@ -37,8 +37,8 @@
     <tr>
       <td>{{ row[0] }}</td>
       <td>{{ row[1] }}</td>
-      <td>{{ row[2] }}</td>
-      <td class="bg-warning"> {{ row[6] }}</td>
+      <td>{{ row[2].strftime('%d.%m.%Y') }}</td>
+      <td class="bg-warning"> {{ row[6].strftime('%d.%m.%Y %H:%M') }}</td>
       <td>{{ row[3] }}</td>
       <td>{{ row[4] }}</td>
       <td>{{ row[5] }}</td>
