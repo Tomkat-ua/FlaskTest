@@ -1,9 +1,11 @@
-import db
+import db,os
 from flask import  request, redirect, flash,render_template
+
+
 
 def losses_list():
     page = int(request.args.get('page', 1))
-    per_page = 10
+    per_page = os.getenv("PAGE_ROWS", 5)
     offset = (page - 1) * per_page
     where = ''
     limit = 'ROWS ? TO ?'
