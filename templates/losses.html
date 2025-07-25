@@ -23,12 +23,13 @@
   <thead class="table-dark">
     <tr>
       <th>SDOC_ID</th>
-      <th>SDOC_NUM</th>
-      <th>SDOC_DATE</th>
-      <th>SERIAL</th>
-      <th>TOV_NAME</th>
-      <th>UNIT_NAME</th>
-      <th>ACTION_DATE</th>
+      <th>Номер док.</th>
+      <th>Дата док.</th>
+      <th>Дата втрати</th>
+      <th>Серійний №</th>
+      <th>Найменування</th>
+      <th>Підрозділ</th>
+
     </tr>
   </thead>
   <tbody>
@@ -37,11 +38,26 @@
       <td>{{ row[0] }}</td>
       <td>{{ row[1] }}</td>
       <td>{{ row[2] }}</td>
+      <td class="bg-warning"> {{ row[6] }}</td>
       <td>{{ row[3] }}</td>
       <td>{{ row[4] }}</td>
       <td>{{ row[5] }}</td>
-      <td>{{ row[6] }}</td>
     </tr>
+        <tr>
+            <td colspan="4">
+                <div class="p-2 bg-light border rounded ">
+                    <strong>Причина втрати:</strong>
+                        {{ row[8] }}
+                </div>
+            </td>
+            <td colspan="3">
+                <div class="p-2 bg-light border rounded">
+                    <strong>Місце втрати:</strong>
+                       {{ row[7] }}
+                </div>
+
+            </td>
+        </tr>
     {% endfor %}
   </tbody>
 </table>

@@ -18,7 +18,7 @@ def losses_list():
         page = 0
         total_pages = 0
         limit =''
-    sql = (' SELECT SDOC_ID,SDOC_NUM,SDOC_DATE,SERIAL,TOV_NAME,UNIT_NAME,action_date '
+    sql = (' SELECT SDOC_ID,SDOC_NUM,SDOC_DATE,SERIAL,TOV_NAME,UNIT_NAME,action_date,action_place,ACTION_RESON '
            ' FROM monitoring.get_losses ') + where + ' order by 1 desc  '+ limit
     losses =db.get_data(sql,[offset + 1, offset + per_page])
     # total_records = len(losses)

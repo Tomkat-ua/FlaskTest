@@ -1,0 +1,7 @@
+<ul class="list-group w-50">
+  {% for key, value in data.items() %}
+  <li class="list-group-item d-flex justify-content-between">
+    <strong>{{ key }}</strong> <span>{{ value }}</span>
+  </li>
+  {% endfor %}
+</ul>

@@ -29,9 +29,12 @@ def get_data(sql,params,mode=1):
     cur = con.cursor()
     cur.execute(sql,params)
     result  = ''
-    if mode == 1:
-        result = cur.fetchall()
-    if mode == 2:
-        result = cur.fetchone()
+    try:
+        if mode == 1:
+            result = cur.fetchall()
+        if mode == 2:
+            result = cur.fetchone()
+    except Exception as e:
+        print(str(e))
     con.close()
     return result

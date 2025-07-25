@@ -1,16 +1,16 @@
 import platform
 from flask import Flask, render_template
 from gevent.pywsgi import WSGIServer
-import os,users,losses,export,serials,g_hist,gnum
+import os,users,losses,export,serials,ghist,gnum
 
 
 db_server        = os.getenv("DB_HOST", '192.168.10.5')
 db_port          = os.getenv("DB_PORT", 3053)
-db_path          = os.getenv("DB_PATH", 'sklad_dev')
+db_path          = os.getenv("DB_PATH", 'sklad_prod')
 db_user          = os.getenv("DB_USER", 'MONITOR')
 db_password      = os.getenv("DB_PASSWORD", 'inwino')
 local_ip         = os.getenv('LOCAL_IP','192.168.10.9')
-server_port      = os.getenv('SERVER_PORT',3000)
+server_port      = os.getenv('SERVER_PORT',3001)
 
 app = Flask(__name__)
 app.secret_key = '435343ku4vjjq3eqhdeql3545345ts2cgvfkdc'  # потрібен для flash-повідомлень
@@ -69,7 +69,7 @@ def serials_search():
 ########### G_HIST ############################################
 @app.route("/ghist",methods =['GET','POST'])
 def ghist_search():
-    return g_hist.search()
+    return ghist.search()
 
 ########### G_NUM #############################################
 @app.route("/gnum",methods =['GET','POST'])

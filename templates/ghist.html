@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="POST" class="mb-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">{{ serial }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" style="width: 400px;" type="search" placeholder="Серійний номер" name="tov_serial">
+        <button class="btn btn-outline-success" type="submit" >Пошук</button>
+      </form>
+    </div>
+  </div>
+</nav>
+</form>
+<!--SUSPEND HEADER -->
+<!--{% if data %}-->
+<!--<ul class="list-group w-50">-->
+<!--  {% for key, value in data.items() %}-->
+<!--  <li class="list-group-item d-flex justify-content-between">-->
+<!--    <strong>{{ key }}</strong> <span>{{ value }}</span>-->
+<!--  </li>-->
+<!--  {% endfor %}-->
+<!--</ul>-->
+
+{% if data %}
+    <table class="table table-sm table-bordered w-auto">
+      <tbody>
+        {% for key, value in data.items() %}
+        <tr>
+          <th>{{ key }}</th>
+          <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</ul>
+{% endif %}
+
+{% endblock %}
+
+
+
