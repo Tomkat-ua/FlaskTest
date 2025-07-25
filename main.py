@@ -1,7 +1,7 @@
 import platform
 from flask import Flask, render_template
 from gevent.pywsgi import WSGIServer
-import os,users,losses,export,serials,ghist,gnum
+import os,losses,export,serials,ghist,gnum
 
 
 db_server        = os.getenv("DB_HOST", '192.168.10.5')
