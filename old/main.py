@@ -16,6 +16,7 @@ app = Flask(__name__)
 app.secret_key = '435343ku4vjjq3eqhdeql3545345ts2cgvfkdc'  # потрібен для flash-повідомлень
 
 
+
 ########## MAIN ####################
 @app.context_processor
 def inject_globals():
@@ -30,6 +31,23 @@ def inject_globals():
 def index():
     return render_template('index.html')
 
+############# USERS ################
+@app.route('/users')
+def list_users():
+    return users.list_users()
+
+@app.route('/add', methods=['POST'])
+def add_user():
+    return users.add_user()
+
+@app.route('/delete/<int:user_id>', methods=['POST'])
+def delete_user(user_id):
+    return users.delete_user(user_id)
+
+@app.route('/edit/<int:user_id>', methods=['GET', 'POST'])
+def edit_user(num):
+    return users.edit_user(num)
+
 ############# LOSSES ######################################
 @app.route('/losses', methods=['GET', 'POST'])
 def losses_list():
@@ -38,7 +56,6 @@ def losses_list():
 @app.route("/lost_add", methods=["GET", "POST"])
 def loss_add():
     return losses.loss_add()
-
 ############ EXPORT ########################################
 @app.route("/export")
 def export_csv():
@@ -59,6 +76,19 @@ def ghist_search():
 def gnum_search():
     return gnum.search()
 
+############ TEST ##########################################
+# @app.route("/test")
+@app.route('/test/<int:record_id>', methods=['GET', 'POST'])
+def edit_record(record_id):
+    return test.edit_record(record_id)
+
+@app.route('/users_pages')
+def users_pages():
+    return pages.list_users()
+
+@app.route('/run_procedure', methods=["POST"])
+def run_procedure():
+    return '/run_procedure'
 ########### MAIN ##############################################
 if __name__ == "__main__":
     if platform.system() == 'Windows':

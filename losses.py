@@ -1,4 +1,4 @@
-import db,os
+import db,os,config
 from flask import  request, redirect, flash,render_template
 
 
@@ -23,6 +23,7 @@ def losses_list():
     sql = (' SELECT SDOC_ID,SDOC_NUM,SDOC_DATE,SERIAL,TOV_NAME,UNIT_NAME,action_date,action_place,ACTION_RESON '
            ' FROM monitoring.get_losses ') + where + ' order by 1 desc  '+ limit
     losses =db.get_data(sql,[offset + 1, offset + per_page])
+    # losses = config.fetchall_as_dict(losses)
     # total_records = len(losses)
     return render_template('losses.html',losses = losses ,title = 'Втрати майна',
                            page=page,total_pages=total_pages,total_records=total_records[0],serch_result=serial,records = len(losses))

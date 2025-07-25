@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+  .compact-cell {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  line-height: 1; /* щоб не було додаткових інтерліньяжів */
+}
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">{{ records }}{{ serch_result }}</a>
@@ -35,28 +42,37 @@
   <tbody>
     {% for row in losses %}
     <tr>
-      <td>{{ row[0] }}</td>
-      <td>{{ row[1] }}</td>
-      <td>{{ row[2].strftime('%d.%m.%Y') }}</td>
-      <td class="bg-warning"> {{ row[6].strftime('%d.%m.%Y %H:%M') }}</td>
-      <td>{{ row[3] }}</td>
-      <td>{{ row[4] }}</td>
-      <td>{{ row[5] }}</td>
+      <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[0] }}</td>
+      <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[1] }}</td>
+      <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[2].strftime('%d.%m.%Y') }}</td>
+      <td class="bg-warning " style="padding-top: 1px; padding-bottom: 1px;"> {{ row[6].strftime('%d.%m.%Y %H:%M') }}</td>
+      <td class="text-success" style="padding-top: 1px; padding-bottom: 1px;">{{ row[3] }}</td>
+      <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[4] }}</td>
+      <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[5] }}</td>
     </tr>
         <tr>
-            <td colspan="4">
-                <div class="p-2 bg-light border rounded ">
+          <td colspan="7">
+                <div class="p-2 bg-light border rounded compact-cell ">
                     <strong>Причина втрати:</strong>
                         {{ row[8] }}
                 </div>
-            </td>
-            <td colspan="3">
-                <div class="p-2 bg-light border rounded">
+                <div class="p-2 bg-light border rounded compact-cell">
                     <strong>Місце втрати:</strong>
                        {{ row[7] }}
                 </div>
-
             </td>
+<!--            <td colspan="4">-->
+<!--                <div class="p-2 bg-light border rounded compact-cell ">-->
+<!--                    <strong>Причина втрати:</strong>-->
+<!--                        {{ row[8] }}-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td colspan="3">-->
+<!--                <div class="p-2 bg-light border rounded compact-cell">-->
+<!--                    <strong>Місце втрати:</strong>-->
+<!--                       {{ row[7] }}-->
+<!--                </div>-->
+<!--            </td>-->
         </tr>
     {% endfor %}
   </tbody>
