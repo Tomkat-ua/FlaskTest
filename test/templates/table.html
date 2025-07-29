@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Таблиця з формою редагування</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- маленький власний стиль для курсора‑стрілочки -->
+    <style>
+        .cursor-indicator { width: 1.5rem; text-align:center; }
+    </style>
+</head>
+<body class="p-4">
+
+<div class="container">
+    <h3>Список автомобілів</h3>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for cat, msg in messages %}
+          <div class="alert alert-{{cat}} alert-dismissible fade show py-1" role="alert">
+              {{msg}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- таблиця -->
+    <table class="table table-sm table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+            <tr class="{% if row['ID'] == selected_id %}table-info{% endif %}">
+                <td class="cursor-indicator">
+                    {% if row['ID'] == selected_id %}👉{% endif %}
+                </td>
+                <td>{{row['ID']}}</td>
+                <td>
+                    <a href="{{ url_for('index', id=row['ID']) }}" class="text-decoration-none">
+                        {{row['NAME']}}
+                    </a>
+                </td>
+                <td>{{row['STATUS']}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- форма, якщо вибрано запис -->
+    {% if selected_row %}
+    <div class="card mt-4">
+        <div class="card-header fw-bold">Редагувати запис #{{selected_row['ID']}}</div>
+        <div class="card-body">
+            <form method="post" class="row g-3">
+                <input type="hidden" name="ID" value="{{selected_row['ID']}}">
+                <div class="col-md-6">
+                    <label class="form-label">Назва</label>
+                    <input type="text" name="NAME" value="{{selected_row['NAME']}}" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Статус</label>
+                    <select name="STATUS" class="form-select">
+                        {% for st in ['Активний','Очікує','Неактивний'] %}
+                            <option value="{{st}}" {% if st==selected_row['STATUS'] %}selected{% endif %}>{{st}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Зберегти</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Скасувати</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS (необов’язково, лише для alert‑close) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

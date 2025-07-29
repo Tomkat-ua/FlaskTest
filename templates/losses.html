@@ -9,7 +9,7 @@
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">{{ records }}{{ serch_result }}</a>
+    {#<a class="navbar-brand" href="#">{{ records }}{{ serch_result }}</a>#}
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -45,9 +45,10 @@
       <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[0] }}</td>
       <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[1] }}</td>
       <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[2].strftime('%d.%m.%Y') }}</td>
-      <td class="bg-warning " style="padding-top: 1px; padding-bottom: 1px;"> {{ row[6].strftime('%d.%m.%Y %H:%M') }}</td>
+     {# <td class="bg-warning "        style="padding-top: 1px; padding-bottom: 1px;"> {{ row[6].strftime('%d.%m.%Y %H:%M') }}</td>#}
+      <td class="fw-bold text-danger" style="padding-top: 1px; padding-bottom: 1px;"> {{ row[6].strftime('%d.%m.%Y %H:%M') }}</td>
       <td class="fw-bold text-success" style="padding-top: 1px; padding-bottom: 1px;">{{ row[3] }}</td>
-      <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[4] }}</td>
+      <td class="fw-bold text-primary" style="padding-top: 1px; padding-bottom: 1px;">{{ row[4] }}</td>
       <td style="padding-top: 1px; padding-bottom: 1px;">{{ row[5] }}</td>
     </tr>
         <tr>
