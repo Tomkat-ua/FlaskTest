@@ -42,7 +42,15 @@ def loss_add():
                 request.form["ACTION_REASON"]
             ])
             response = cur.fetchone()
-            flash(f" {response[0]}", "info")
+            if response:
+                o_result = response[0]
+                if 'ERROR' in o_result.upper():
+                    # flash(f"❌ {response[0]}", "danger")
+                    # можна кинути виняток або обробити як завгодно
+                    raise Exception(f"Procedure error: {o_result}")
+                else:
+                    flash(f"✅ Успішно: {response[0]}", "info")
+            # flash(f"✅ {response[0]}", "info")
             #raise ValueError("Помилка обробки форми")
         except Exception as e:
             flash(f"❌ {str(e)}", "danger")  # 'danger' = Bootstrap-клас для червоного
