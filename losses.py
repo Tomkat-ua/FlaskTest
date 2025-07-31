@@ -10,13 +10,13 @@ def losses_list():
     where = ''
     limit = 'ROWS ? TO ?'
     # 🔸 Підрахунок загальної кількості
-    total_records = db.get_data("SELECT COUNT(*) FROM monitoring.get_losses ",None,2)
+    total_records = db.get_data("SELECT COUNT(*) FROM monitoring.get_losses where 1=1 ",None,2)
     total_pages = (total_records[0] + per_page - 1) // per_page
     serial = request.form.get('tov_serial', '').strip()
     # 🔸 Пагінований запит
 
     if len(serial) > 0:
-        where = ' where SERIAL like \'%s\' ' % serial
+        where = ' and SERIAL like \'%s\' ' % serial
         page = 0
         total_pages = 0
         limit =''
