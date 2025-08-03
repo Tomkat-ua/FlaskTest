@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-4">➕ Новий запис</h3>
+
+<form method="POST" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label">Поле 1 (name)</label>
+    <input type="text" name="name" class="form-control form-control-sm" required>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Поле 2 (email)</label>
+    <input type="email" name="email" class="form-control form-control-sm" required>
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Поле 3 (phone)</label>
+    <input type="text" name="phone" class="form-control form-control-sm">
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Поле 4 (address)</label>
+    <input type="text" name="address" class="form-control form-control-sm">
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Поле 5 (city)</label>
+    <input type="text" name="city" class="form-control form-control-sm">
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Поле 6 (birth_date)</label>
+    <input type="date" name="birth_date" class="form-control form-control-sm">
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Поле 7 (notes)</label>
+    <textarea name="notes" class="form-control form-control-sm" rows="2"></textarea>
+  </div>
+
+  <div class="col-12 d-flex justify-content-between mt-3">
+    <a href="{{ url_for('index') }}" class="btn btn-secondary btn-sm">← Назад</a>
+    <button type="submit" class="btn btn-primary btn-sm">💾 Створити запис</button>
+  </div>
+</form>
+{% endblock %}
